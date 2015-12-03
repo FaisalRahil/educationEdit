@@ -1,0 +1,60 @@
+extends layout
+block authenticationStyle
+block errorStyle
+block content
+  .container
+    .row
+      .pull-right
+        .btn-group.btn-breadcrumb
+            a.btn.btn-default(href="/cPanel")
+              i.glyphicon.glyphicon-home
+            a.btn.btn-default(href="/users") عرض المستخدمين
+            .btn.btn-default.active إضافة مستخدم جديد
+      .col-md-6.col-md-offset-2
+        br
+        br
+        form#newUser.form(action="/users/newUser", method="post", accept-charset="utf-8", role="form")
+          legend  إضافة مستخدم جديد
+            .pull-left
+              a.btn.btn-primary(href='/users', role='button')
+                span.glyphicon.glyphicon-th-list
+                |  عرض المستخدمين
+          .form-group
+            .row
+              .col-xs-6.col-md-6
+                label.h4 اﻻسم
+                input.form-control#name(type="text", name="name", placeholder="الاسم")
+              .col-xs-6.col-md-6
+                label.h4 رقم الهاتف
+                input.form-control#phone(type="text", name="phone", placeholder="رقم الهاتف")          
+            br
+            .row
+              .col-xs-6.col-md-6
+                label.h4 البريد الالكتروني
+                input.form-control#email(type="text", name="email", placeholder="البريد الالكتروني")
+              .col-xs-6.col-md-6
+                label.h4 تأكيد البريد الالكتروني
+                input.form-control#confirmEmail(type="text", name="confirmEmail", placeholder="تأكيد البريد الالكتروني")
+            br
+            .row
+              .col-xs-6.col-md-6
+                label.h4 الرقم السري
+                input.form-control#pass(type="password", name="password", placeholder="الرقم السري")
+              .col-xs-6.col-md-6
+                label.h4 تأكيد الرقم السري
+                input.form-control#confirmPassword(type="password", name="confirmPassword", placeholder="تأكيد الرقم السري")
+            br
+            hr
+            .col-xs-2.col-xs-offset-5.col-md-2.col-md-offset-5
+              button.btn.btn-primary(type="submit")
+                span.glyphicon.glyphicon-plus
+                |  إضافة
+    br
+  script(src='/js/jquery-2.1.1.min.js')
+  script(src='/js/bootstrap.min.js')
+  script(src='/js/bootstrap-select.min.js')
+  script(src='/js/jquery.validate.min.js')
+  script(src='/js/bootstrap-notify.min.js')
+  script(src='/js/backToTop.js')
+  script(src='/js/helpers.js')
+  script(src='/js/newUser.js')

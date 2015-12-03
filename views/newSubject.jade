@@ -1,0 +1,122 @@
+extends layout
+block authenticationStyle
+block errorStyle  
+block content
+  .container
+    .row
+      .col-md-10
+        .btn-group.btn-breadcrumb
+          a.btn.btn-default(href="/cPanel")
+            i.glyphicon.glyphicon-home
+          a.btn.btn-default(href="/subject") عرض المواد الدراسية
+          .btn.btn-default.active إضافة مادة دراسية جديدة
+        br
+        br
+        legend  إضافة مادة دراسية لنظام محدد
+          .pull-left
+            a.btn.btn-primary(href='/subject', role='button')
+              span.glyphicon.glyphicon-th-list
+              span  عرض المواد الدراسية
+      .col-md-10
+        | الرجاء اختيار نظام المادة ؟     
+        input#toggle-subject(type='checkbox',data-on="سنة",data-off="فصل", data-toggle='toggle')
+        #console-event
+        form#newSubject(action="", method="post", accept-charset="utf-8", role="form")
+          h4.text-center بيانات المادة 
+          hr
+          .form-group
+            .row
+              .col-xs-3.col-md-3
+                label اسم المادة
+                input#name.form-control(type="text", name="name", placeholder="اسم المادة")
+              .col-xs-3.col-md-3.text-left
+                label.pull-left Subject name
+                input#name_en.form-control(type="text", name="name_en", placeholder="Subject name", dir="ltr")
+              .col-xs-3.col-md-3
+                label رمز المادة
+                input#code.form-control(type="text", name="code", placeholder="رمز المادة")                 
+              .col-xs-3.col-md-3
+                label عدد وحدات النظري
+                input#no_th_unit.form-control(type="text", name="no_th_unit", placeholder="عدد وحدات النظري")
+                      
+          .form-group
+            .row
+              .col-xs-3.col-md-3
+                label أعمال السنة
+                input#chapter_degree.form-control(type="text", name="chapter_degree", placeholder="أعال السنة")
+              .col-xs-3.col-md-3
+                label درجة نهائي النظري
+                input#final_theor.form-control(type="text", name="final_theor", placeholder="نهائي النظري")
+              .col-xs-3.col-md-3
+                label درجة نهائي العملي
+                input#final_practical.form-control(type="text", name="final_practical", placeholder="نهائي العملي")
+              .col-xs-3.col-md-3
+                #department_radio 
+                  label تندرج تحت قسم
+                  br
+                  label.radio-inline
+                    input#radio.radio_js(type='radio', name='department',value="1")
+                    | عامة
+                  label.radio-inline
+                    input#radio.radioo(type='radio', name='department',value="2")
+                    | خاصة
+                  label.radio-inline
+                    input#radio.radiooo(type='radio', name='department',value="3")
+                    | كلاهما
+                  label.radio-inline
+                    input#radio.radioM(type='radio', name='department',value="4")
+                    | اقسام
+                //- #department_select
+                //-   label تندرج تحت قسم
+                //-   select.form-control.selectpicker#department_iddepartment(name="DepartmentId", data-live-search="true", data-size=5)
+                //-     option(value="", style='color:grey; display:none;') اختر اسم القسم...
+                //-     for i in dept
+                //-       option(value="#{i.id}") #{i.name}
+          .form-group 
+            .row
+              .col-xs-3.col-md-3
+                label
+                  span  المواد التمهيدية
+                select#subjectId.form-control.selectpicker(name="subjectId", data-live-search="true", data-size=5)
+                  option(value="", style='color:grey; display:none;') اختر اسم المواد...
+                  for u in sub
+                    option(value="#{u.id}", style='color:grey; ') #{u.name}
+              .col-xs-3.col-md-3.col-md-offset-6
+                #department_select(style="position: absolute;")
+                  label تندرج تحت قسم
+                  select.form-control.selectpicker#department_iddepartment(name="DepartmentId", data-live-search="true", data-size=5)
+                    option(value="", style='color:grey; display:none;') اختر اسم القسم...
+                    for i in dept
+                      option(value="#{i.id}") #{i.name}
+              .col-xs-3.col-md-3.col-md-offset-6
+                #departmentMuln(style="position: absolute;")
+                  label تندرج تحت اقسام
+                  select.form-control.selectpicker#departmentMulSeln(name="mult",multiple, data-live-search="true", data-size=5)
+                    option(value="", style='color:grey; display:none;') اختر اسم القسم...
+                    for i in dept
+                      option(value="#{i.id}") #{i.name}
+              .col-xs-5.col-md-5
+                table#my.table.table-bordered
+                  tbody
+                  //- for u in sub
+                  //-   tr
+                  //-     td.text-center #{u.name}        
+          hr
+          .col-xs-2.col-xs-offset-4.col-md-2.col-md-offset-5
+            button#save.btn.btn-primary(type="button")
+              | إضافة
+    br
+    br
+  script(src='/js/jquery-2.1.1.min.js')
+  script(src='/js/bootstrap.min.js')
+  script(src='/js/bootstrap-toggle.min.js') 
+  script(src='/js/bootstrap-select.min.js')
+  script(src='/js/moment-with-locales.min.js')
+  script(src='/js/bootstrap-datetimepicker.min.js')
+  script(src='/js/jquery.validate.min.js')
+  script(src='/js/bootstrap-notify.min.js')
+  script(src='/js/backToTop.js')
+  script(src='/js/helpers.js')
+  script(src='/js/newSubject.js')  
+
+   

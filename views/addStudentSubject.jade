@@ -1,0 +1,338 @@
+extends layout
+block authenticationStyle
+block errorStyle
+block content
+  .container
+    .row
+      .col-md-10
+        .btn-group.btn-breadcrumb
+          a.btn.btn-default(href="/cPanel")
+            i.glyphicon.glyphicon-home
+          a.btn.btn-default(href="/transcript/Academictranscripts") تنزيل المواد للطلبة
+          a.btn.btn-default(href="/transcript/studentData/#{sem.StudentId}") عرض فصول الطلبة
+          .btn.btn-default.active
+            if sys == 1
+              | فصل ربيعي
+            if sys == 2
+              | فصل خريفي
+            if sys == 3
+              | فصل صيفي
+            if sys == 4
+              | سنة
+        .pull-left(style="margin-left: 15px;")
+          a.btn.btn-success(href='/transcript/studentData/#{sem.StudentId}', role='button',data-toggle='modal')
+            i.fa.fa-arrow-left
+            span  رجوع 
+        br
+        //- br
+        //- br
+        //- .row 
+        //-   .pull-left.btn-group(role='group', aria-label='...')
+        //-     button#Department_bt.btn.btn-default(type='button',style="color:#337AB7;") عرض المواد القسم
+        //-       span.glyphicon.glyphicon-pencil 
+        //-     |   
+        //-     button#Division_bt.btn.btn-default(type='button',style="color:#337AB7;") عرض المواد الشعبة
+        //-       span.glyphicon.glyphicon-pencil
+        //-     |   
+        //-     button#generale_bt.btn.btn-default(type='button',style="color:#337AB7;") عرض المواد العامة
+        //-       span.glyphicon.glyphicon-pencil 
+        br 
+        .row       
+          .col-md-12   
+            .panel.panel-default
+              .panel-heading
+                .row
+                  .pull-right(style="margin-right: 10px;")
+                    .panel-title تنزيل مواد ..
+              .table-responsive
+                table#degree.table.table-bordred.table-striped.text-right
+                  thead
+                    th اسم المادة
+                    th Subject Name
+                    th رمز المادة
+                    th المجموعة
+                    th الإمتحان النصفي
+                    th الإمتحان النهائي
+                    th الإمتحان العملي
+                    th الدرجة النهائية
+                    th  حالة الطالب
+                    th.text-center تسجيل الدرجة
+                    th.text-center حذف
+                  tbody#Acbody
+                    for re,u in res
+                      if re.Sub_group.Subject != null
+                        tr(data-id = '#{re.id}',data-pract="#{re.final_practical}",data-sub="#{re.subject_status}",data-case="#{re.result_case}",data-deg="#{re.chapter_degree}",data-fin="#{re.final_exam}",data-notes="#{re.notices}")
+                          td #{re.Sub_group.Subject.name}
+                          td #{re.Sub_group.Subject.name_en}
+                          td #{re.Sub_group.Subject.code}
+                          td #{re.Sub_group.sub_group_name}
+                          td(id='chapter'+u) #{re.chapter_degree} \  #{re.Sub_group.Subject.chapter_degree}
+                          td(id='chap'+u ,hidden) #{re.Sub_group.Subject.chapter_degree}
+                          td(id='final'+u) #{re.final_exam} \ #{re.Sub_group.Subject.final_theor}
+                          td(id='fina'+u,hidden) #{re.final_exam}
+                          td(id='fin'+u,hidden) #{re.Sub_group.Subject.final_theor}
+                          if re.Sub_group.Subject.has_practical ==2
+                            if re.final_practical == -8 
+                              td لم يحضر الامتحان العملي
+                            else
+                              td #{re.final_practical} \ #{re.Sub_group.Subject.final_practical}
+                          else 
+                            td  لايوجد عملي
+                          td(id='sum'+u) #{re.sum_dagree} \ #{re.Sub_group.Subject.final_theor + re.Sub_group.Subject.chapter_degree}
+                          td(id='summ'+u,hidden) #{re.Sub_group.Subject.final_theor + re.Sub_group.Subject.chapter_degree}
+                          td(id='summm'+u,hidden) #{re.sum_dagree}
+                          td(id='status'+u)
+                          td.text-center
+                            p(data-placement="top", data-toggle="tooltip", title="تعديل")  
+                              button#viw.btn.btn-primary.btn-xs(value="#{re.id}",data-title="تعديل", data-toggle="modal", data-target="#Show_Semester")
+                                span.glyphicon.glyphicon-eye-open
+                          td.text-center
+                            p(data-placement="top", data-toggle="tooltip", title="حذف")  
+                              button#del.btn.btn-danger.btn-xs(value="#{re.id}",data-title="حذف", data-toggle="modal", data-target="#delete")
+                                span.glyphicon.glyphicon-trash
+          br
+          .col-md-5.pull-left  
+            .btn-group(role='group', aria-label='...')
+              button#Department_bt.btn.btn-sm.btn-default(type='button',style="color:#337AB7;width:125px;height:35px;") عرض المواد القسم
+                span.glyphicon.glyphicon-pencil 
+              |   
+              button#Division_bt.btn.btn-sm.btn-default(type='button',style="color:#337AB7;width:128px;height:35px;") عرض المواد الشعبة
+                span.glyphicon.glyphicon-pencil
+              |   
+              button#generale_bt.btn.btn-sm.btn-default(type='button',style="color:#337AB7;width:125px;height:35px;") عرض المواد العامة
+                span.glyphicon.glyphicon-pencil
+            br
+            #Department_teble  
+              .panel.panel-default
+                .panel-heading
+                  .row
+                    .pull-right(style="margin-right: 10px;")
+                      .panel-title عرض المواد القسم
+                .table-responsive
+                  table#mytablee.table.table-bordred.table-striped.text-right
+                    thead
+                      th اسم المادة
+                      th رمز المادة
+                      th المجموعة
+                      th.text-center إضافة
+                    tbody
+                      for d,u in dept
+                        tr(id = 'depSub-#{d.id}',data-practical = '#{d.has_practical}', data-subjectid='#{d.SubjectId}')
+                          td #{d.name}
+                          td #{d.code}
+                          td #{d.sub_group_name}
+                          td(id="chap"+u,hidden) #{d.chapter_degree}
+                          td(id="final"+u,hidden) #{d.final_theor}
+                          td.text-center
+                            p(data-placement="top", data-toggle="tooltip", title="إضافة")
+                              button#adA.btn.btn-success.btn-xs(value="#{d.id}",data-title="Edit", data-toggle="modal", data-target="#add")
+                                span.glyphicon.glyphicon-hand-right   
+                              button#chapterGlobalVaribalButton(hidden)
+                              button#finalGlobalVaribalButton(hidden)
+
+                                              
+            #generale_teble
+              .panel.panel-default
+                .panel-heading
+                  .row
+                    .pull-right(style="margin-right: 10px;")
+                      .panel-title عرض المواد العامة    
+                .table-responsive
+                  table#mytableee.table.table-bordred.table-striped.text-right
+                    thead
+                      th اسم المادة
+                      th رمز المادة
+                      th المجموعة
+                      th.text-center إضافة
+                    tbody
+                      for g,u in gen
+                        if g.Subject != nul
+                          tr(id = 'genSub-#{g.id}',data-practical = '#{g.has_practical}', data-subjectid='#{g.Subject.id}')
+                            td #{g.Subject.name}
+                            td #{g.Subject.code}
+                            td #{g.sub_group_name}
+                            td(id="chap"+u,hidden) #{g.Subject.chapter_degree}
+                            td(id="final"+u,hidden) #{g.Subject.final_theor}
+                            td.text-center
+                              p(data-placement="top", data-toggle="tooltip", title="إضافة")
+                                button#ad.btn.btn-success.btn-xs(value="#{g.id}",data-title="Edit", data-toggle="modal", data-target="#add")
+                                  span.glyphicon.glyphicon-hand-right
+                              button#chapterGlobalVaribalButton(hidden)
+                              button#finalGlobalVaribalButton(hidden)
+
+
+            #Division_teble
+              .panel.panel-default
+                .panel-heading
+                  .row
+                    .pull-right(style="margin-right: 10px;")
+                      .panel-title عرض المواد الشعبة   
+                .table-responsive
+                  table#mytableeee.table.table-bordred.table-striped.text-right
+                    thead
+                      th اسم المادة
+                      th رمز المادة
+                      th المجموعة
+                      th.text-center إضافة
+                    tbody
+                      for di,u in div
+                        if di.Subject != nul
+                          tr(id = 'divSub-#{di.id}',data-practical = '#{di.has_practical}', data-subjectid='#{di.Subject.id}')
+                            td #{di.Subject.name}
+                            td #{di.Subject.code}
+                            td #{di.sub_group_name}
+                            td(id="chap"+u,hidden) #{di.Subject.chapter_degree}
+                            td(id="final"+u,hidden) #{di.Subject.final_theor}
+                            td.text-center
+                              p(data-placement="top", data-toggle="tooltip", title="إضافة")
+                                button#a.btn.btn-success.btn-xs(value="#{di.id}",data-title="Edit", data-toggle="modal", data-target="#add")
+                                  span.glyphicon.glyphicon-hand-right
+                              button#chapterGlobalVaribalButton(hidden)
+                              button#finalGlobalVaribalButton(hidden)
+
+    
+  #Show_Semester.modal.fade.font(tabindex="-1", role="dialog", aria-labelledby="edit", aria-hidden="true")
+    .modal-dialog
+      form#updateG.form(role="form")
+        .modal-content
+          .modal-header
+            button.close(type="button", data-dismiss="modal", aria-hidden="true")
+              span.glyphicon.glyphicon-remove(aria-hidden="true")
+            h4#Heading.modal-title.custom_align تعديل فصل دراسي
+            .form-group
+              .row
+                .col-xs-7.col-md-7
+                  .modal-body#toggle_mod
+                       //- | هل حضر الامتحان العملي ؟   
+                       //- input#toggle-subj(name='isPractical',type='checkbox',data-on="نعم",data-off="لا", data-toggle='toggle')
+            .form-group
+              .row
+                .col-xs-4.col-md-4
+                  lable أعمال السنة
+                  input.form-control#chapter_degree(type="text", name="chapter_degree", value="", placeholder="أعمال السنة")
+                .col-xs-4.col-md-4
+                  lable درجة النهائي
+                  input.form-control#final_exam(type="text", name="final_exam", value="", placeholder="درجة النهائي")
+                .col-xs-4.col-md-4 
+                  lable درجة العملي
+                  input.form-control#practical(type="text", name="final_practical", value="", placeholder="درجة النهائي") 
+            .form-group
+              .row
+                .col-xs-6.col-md-6
+                  lable حالة المادة
+                  select#subject_status.form-control.selectpicker(name="subject_status", data-live-search="true", data-size=5)
+                    option(value="1") تنزيل  
+                    option(value="2") إضافة
+                    option(value="3") إسقاط
+                .col-xs-6.col-md-6
+                  lable التقدير 
+                  select#result_case.form-control.selectpicker(name="result_case", data-live-search="true", data-size=5)
+                    option(value="",style='color:grey; display:none;') اختر التقدير...
+                    option(value="1") ممتاز  
+                    option(value="2") جيد جدا
+                    option(value="3") جيد
+                    option(value="4") مقبول  
+                    option(value="5") ضعيف
+                    option(value="6") ضعيف جدا
+            .form-group
+              .row
+                .col-xs-6.col-md-6.col-md-offset-3
+                  select#notes.form-control.selectpicker(name="notices", data-live-search="true", data-size=5)
+                    option(value="1") تنزيل  
+                    option(value="2") إعادة
+                    option(value="3") تكميلي
+          .modal-footer
+            button#upres.btn.btn-primary.btn-lg(type="button", style="width: 100%;")
+              span.glyphicon.glyphicon-ok-sign  
+  #delete.modal.fade.font(tabindex="-1", role="dialog", aria-labelledby="edit", aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal", aria-hidden="true")
+            span.glyphicon.glyphicon-remove(aria-hidden="true")
+          h4#Heading.modal-title.custom_align إلغاء مادة
+        .modal-body
+          .alert.alert-danger
+            span.glyphicon.glyphicon-warning-sign
+            |  هل انت متأكد من إلغاء هذه المادة
+        .modal-footer
+          button#del_subject.btn.btn-success(type="button", data-dismiss="modal")
+            span.glyphicon.glyphicon-ok-sign
+            |  نعم
+          button.btn.btn-default(type="button", data-dismiss="modal")
+            span.glyphicon.glyphicon-remove
+            |  لا
+  #add.modal.fade.font(tabindex="-1", role="dialog", aria-labelledby="edit", aria-hidden="true")
+    .modal-dialog
+      .modal-content
+        .modal-header
+          button.close(type="button", data-dismiss="modal", aria-hidden="true")
+            span.glyphicon.glyphicon-remove(aria-hidden="true")
+          h4#Heading.modal-title.custom_align تنزيل مواد
+        .modal-body
+          form#addForm.form-signin(role="form")
+            .form-group
+              .row
+                .col-xs-7.col-md-7
+                
+                  .modal-body#toggle_model
+                      | هل حضر الامتحان العملي ؟  
+                      input#toggle-subject(name='isPractical',type='checkbox',data-on="نعم",data-off="لا", data-toggle='toggle')
+            .form-group
+              .row
+                .col-xs-4.col-md-4
+                  lable أعمال السنة
+                  input.form-control#chapter(type="text", name="chapter_degree", placeholder="أعمال السنة")
+                .col-xs-4.col-md-4 
+                  lable درجة النهائي
+                  input.form-control#final(type="text", name="final_exam", placeholder="درجة النهائي")
+                .col-xs-4.col-md-4
+                  lable درجة العملي
+                  input.form-control#parct(type="text", name="final_practical", placeholder="درجة العملي")
+            .form-group
+              .row
+                .col-xs-6.col-md-6
+                  lable حالة المادة
+                  input(type="hidden",name="StudentId",value="#{sem.StudentId}")
+                  select.form-control.selectpicker(name="subject_status", data-live-search="true", data-size=5)
+                    option(value="", style='color:grey; display:none;') اختر الحالة...
+                    option(value="1") تنزيل  
+                    option(value="2") إضافة
+                    option(value="3") إسقاط
+                .col-xs-6.col-md-6
+                  lable التقدير 
+                  input(type="hidden",name="SemesterStudentId",value="#{sem.id}")
+                  select#result.form-control.selectpicker(name="result_case", data-live-search="true", data-size=5)
+                    option(value="", style='color:grey; display:none;') اختر التقدير...
+                    option(value="1") ممتاز  
+                    option(value="2") جيد جدا
+                    option(value="3") جيد
+                    option(value="4") مقبول  
+                    option(value="5") ضعيف
+                    option(value="6") ضعيف جدا
+                  input#subG(type="hidden",name="SubGroupId",value="")
+            .form-group
+              .row
+                .col-xs-6.col-md-6.col-md-offset-3
+                  select#note.form-control.selectpicker(name="notices", data-live-search="true", data-size=5)
+                    option(value="1") تنزيل  
+                    option(value="2") إعادة
+                    option(value="3") تكميلي
+        .modal-footer
+          button#tog(hidden) 
+          button#submit.btn.btn-primary.btn-lg(type="button", style="width: 100%;")
+            span.glyphicon.glyphicon-ok-sign
+            | 
+            span حسنا
+
+  script(src='/js/jquery-2.1.1.min.js')
+  script(src='/js/bootstrap.min.js')
+  script(src='/js/bootstrap-select.min.js') 
+  script(src='/js/bootstrap-notify.min.js') 
+  script(src='/js/bootstrap-toggle.min.js') 
+  script(src='/js/jquery.validate.min.js')
+  script(src='/js/backToTop.js')
+  script(src='/js/helpers.js') 
+  script(src='/js/addStudentSubject.js') 
+  script(src='/js/studentData.js')   
+  

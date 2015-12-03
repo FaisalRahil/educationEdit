@@ -1,0 +1,58 @@
+extends layout
+block authenticationStyle
+block errorStyle
+block content
+block navcPanel
+  .container.font(style="padding-top: 30px;")
+    .row
+      .col-md-6.col-md-offset-3
+        .panel.panel-primary.font
+          .panel-heading
+            h3.panel-title#panel-title
+              span.fa.fa-bookmark.fa-lg
+              | 
+              span لوحة التحكم
+          .panel-body
+            .row
+              .col-xs-6.col-md-6.animated.fadeInRight
+                a.btn.btn-danger.btn-lg.btn-block(href="/semester", role="button")
+                  span.fa.fa-calendar-check-o.fa-lg
+                  br
+                  span اﻷنظمة الدراسية
+                a.btn.btn-warning.btn-lg.btn-block(href="/location", role="button")
+                  span.fa.fa-map-marker.fa-lg
+                  br
+                  span القاعات الدراسية
+                a.btn.btn-primary.btn-lg.btn-block(href="/subject", role="button")
+                  span.fa.fa-book.fa-lg
+                  br
+                  span المواد الدراسية
+                a.btn.btn-info.btn-lg.btn-block(href="/department", role="button")
+                  span.fa.fa-cube.fa-lg
+                  br
+                  span اﻷقسام
+              .col-xs-6.col-md-6.animated.fadeInLeft
+                a.btn.btn-success.btn-lg.btn-block(href="/division", role="button")
+                  span.fa.fa-cubes.fa-lg
+                  br
+                  span الشعب
+                a.btn.btn-info.btn-lg.btn-block(href="/student", role="button")
+                  span.fa.fa-graduation-cap.fa-lg
+                  br
+                  span الطلبة المسجلين
+                a.btn.btn-primary.btn-lg.btn-block(href="/facultyMember", role="button")
+                  span.fa.fa-users.fa-lg
+                  br
+                  span المحاضرين
+                a.btn.btn-warning.btn-lg.btn-block(href="/transcript/Academictranscripts", role="button")
+                  span.fa.fa-arrow-down.fa-lg
+                  br
+                  span تنزيل المواد  
+            a.btn.btn-success.btn-lg.btn-block.animated.fadeInUp(href="/transcript", role="button", style="margin-bottom:0px;")
+              span.fa.fa-file-o.fa-lg
+              span  طباعة التقارير
+  script(src='/js/jquery-1.11.2.min.js')
+  script(src='/js/bootstrap.min.js')
+  script(src='/js/jquery.validate.min.js')
+  script(src='/js/backToTop.js')
+  

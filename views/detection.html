@@ -1,0 +1,187 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>jsreport <%= version %></title>
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/css/bootstrap-rtl.min.css">
+    <style>
+      @font-face {
+        font-family: 'Droid Arabic Kufi';
+        src : url("http://localhost:3000/fonts/DroidKufi-Regular.ttf") format("truetype");
+      }
+      body {
+        font-family: 'Droid Arabic Kufi';
+        font-size: 12px;
+      }
+      .table,.table>thead>tr>th{
+        font-size: 15px;
+        border: 2px solid #000;
+      }
+      .table,.table>tbody>tr>td{
+        font-size: 15px;
+        border: 1px dotted #000;
+      }
+      .condensed>tbody>tr>td {
+        padding: 5px;
+      }
+      .condensed>thead>tr>th{
+        padding-top: 10px;
+        padding-bottom: 11px;
+        font-weight: 100;
+      }
+      .halfSpace{
+        height: 5px;
+      }
+      .space{
+        height: 10px;
+      }
+      .twoSpace{
+        height: 20px;
+      }
+      h3,.h4 {
+        font-weight: bold;
+      }
+    </style>
+    <meta charset="utf-8"/>
+  </head>
+  <!-- <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-4">
+          <div class="text-right"> 
+            <h4 class="h4">وزارة التعليـم العالـــــــي والبحث العلــــــــمي
+            <div class="space"></div>
+            الهيئـة الوطنيـة للتعليـم التقنـــي والفنـــي
+            <div class="space"></div>
+            المعهد العالي للمهن الطبية القره بوللي</h4>
+          </div>
+        </div>
+        <div class="col-xs-5">
+          <div class="text-center"> 
+            <h3> كشف رصد درجات الامتحان النهائي </h3>
+          </div>
+          <div class="text-center"> 
+            <h3> {{type}} <span>:</span> {{semester}} </h3>
+          </div>
+          
+        </div>
+        <div class="col-xs-3">
+          <div class="halfSpace"></div>
+          <div class="text-left">
+            <h4 class="h4">الفصـــل <span>/ </span> {{level}} </h4>
+            <h4 class="h4">الشعبة <span>/ </span> {{div.name}} </h4>
+          </div>
+        </div>
+        <div class="col-xs-12">
+          <h6 class="text-left">صفحة رقم <sapn>(001)</span> </h6> -->
+          {{{htmlTagsDrawDetection data deg type semester level div.name}}} 
+          <!-- <table class="table condensed">
+            <thead>
+              <tr style="border-top-style: solid; border-top-width: 2px;">
+                <th class="text-center" width="1%" height="46">ت</th>
+                <th class="text-center" width="13%">اسم الطالب<span>/</span>ة</th>
+                <th class="text-center" width="6%">رقم القيد</th>
+                <th class="text-center" width="1%">الدرجــــــــة</th>
+                {{#data}}
+                <th class="text-center">{{code}}</th>
+                {{/data}}
+                <th class="text-center">ملاحظات</th>
+                <th class="text-center" width="8%">المجموع العام</th>
+                <th class="text-center" width="8%">التقدير العام</th>
+                <th class="text-center" width="9%">النتيجة النهائية</th>
+              </tr>
+            </thead>
+            <tbody style="border: 2px solid #000;">
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="font-size: 11px;" class="text-center">أعمال السنة</td>
+                 {{#data}}
+                <td>{{code}}</td>
+                {{/data}}
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td style="font-size: 11px;" class="text-center">العملــــــــي</td>
+                {{#data}}
+                <td>{{code}}</td>
+                {{/data}}
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>aaa</td>
+                <td></td>
+                <td></td>
+                <td style="font-size: 11px;" class="text-center">نهاية العــام</td>
+                {{#data}}
+                <td>{{code}}</td>
+                {{/data}}
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>dd</td>
+                <td></td>
+                <td></td>
+                <td style="font-size: 11px;" class="text-center">المجمـــــــوع</td>
+                {{#data}}
+                <td>{{code}}</td>
+                {{/data}}
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+            
+          </table> -->
+
+       <!--  </div>
+        <div class="col-xs-3">
+          <div class="space"></div>
+          <div class="pull-right"> 
+            <h4 class="h4">قسم الدراسة واﻷمتحانات</h4>
+            <div class="halfSpace"></div>
+            <h4>.....................................</h4>
+            <div class="halfSpace"></div>
+            <div class="text-center">
+              <h6> التاريخ <span> ....../ ....../ ......</span></h6>
+              <h6> الموافق <span> ....../ ....../ ......</span></h6>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6">
+          <div class="space"></div>
+          <div class="text-center"> 
+            <h4 class="h4"> لجنـــة اﻷمتحانات </h4>
+            <div class="halfSpace"></div>
+            <h4>....................................</h4>
+            <div class="halfSpace"></div>
+            <h6> التاريخ <span> ....../ ....../ ......</span></h6>
+            <h6> الموافق <span> ....../ ....../ ......</span></h6>
+          </div>
+        </div>
+        <div class="col-xs-3">
+          <div class="space"></div>
+          <div class="text-left">
+            <h4 class="h4">يعتمد<span> / </span>مدير عام المعهد</h4>
+            <div class="halfSpace"></div>
+            <h4>....................................</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body> -->
+</html>

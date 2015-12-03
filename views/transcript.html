@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <!-- <link rel="stylesheet" type="text/css" href="http://localhost:3000/public/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/css/bootstrap.min.css">
+    <style>
+    @font-face {
+      font-family: 'droidkufi';
+      src : url("http://localhost:3000/fonts/DroidKufi-Regular.ttf") format("truetype");
+        }
+    body {
+      /*font-family: 'Droid Arabic Kufi', sans-serif;*/
+      /*font-family: 'Droid Arabic Naskh', serif;*/
+      font-family: 'droidkufi', sans-serif; 
+    }   
+    .page-break    { display: block; page-break-before: always; }
+
+
+</style>
+    <meta charset="utf-8"/>
+    <!-- <link rel="stylesheet" href="@Url.ContentAbsUrl("~/bootstrap.css")" /> -->
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <img src="http://localhost:3000/images/1.jpg" class="img-responsive" alt="Responsive image">
+                <!-- page -->
+                <!-- head -->
+                </div>
+                <h4>
+                {{#obbs}}
+                <script type="text/javascript">
+                // document.write(obbs[0].SemesterId);
+
+<<<<<<< HEAD
+                      // var currentS=obbs[0].SemesterId;
+                      // console.log("open table");
+                      // for (i=0 ;i<obj.length ;i++){
+                      //     //do somethin
+                      //     if(currentS!=obbs[i].SemesterId){
+                      //         document.write("close table");
+                      //         currentS=obbs[i].SemesterId;
+                      //         document.write("open table");
+                      //     }
+                      //     document.write("obbs[i].SemesterId");
+                      // }
+                      // document.write("close table");
+                </script>
+                </h4>
+                
+                      {{final_theor}}/{{no_pr_unit:}}/{{code}}/{{name_en}}/{{name}}<span>:</span>{{chapter_degree}}
+                  {{/obbs}}
+=======
+                                <tbody>
+<!--                                   {{#each subjects}}
+ -->                                    <!-- foreach ($order->lineItems as $line) or some such thing here -->
+                        <!--             <tr>
+                                        <td class="text-center h6">%70</td>
+                                        <td class="text-center h6">{{subject_ar}}</td>
+                                        <td class="text-center h6">{{subject_en}}</td>
+                                        <td class="text-center h6">{{degree}}</td>
+                                    </tr>   -->
+<!--                                     {{/each}}    
+ -->                                    <tr>
+                                        <td class="no-line h5" align="left h5"><strong>المعدل التراكمي<span>:</span> {{{draw subjects}}} </strong></td>
+                                        <td class="no-line h5"></td>
+                                        <td class="no-line h5">المعدل الفصلي <span>:</span> %60</td>
+                                        <td class="no-line text-center h5"><strong>التقدير <span>:</span> جيد </strong></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+        <script type="text/javascript">
+         if (i % 2 === 0 ) {
+        document.write(" <div class='page-break'></div> ");
+      }
+        i ++;
+        </script>
+     <!-- break pages -->
+        <!-- endpage -->      
+        {{/classes}}
+                <!-- page -->
+                <!-- head -->
+               <!-- endpage -->      
+    </div>
+>>>>>>> 6668f05c4df42406cfc90097da22e21a3639a3ce
+  </body>
+</html>

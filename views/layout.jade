@@ -1,0 +1,262 @@
+doctype html
+html
+  head
+    title= title
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, user-scalable=no")
+    link(rel='stylesheet', href='/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/font-awesome.min.css')
+    link(rel='stylesheet', href='/css/animate.min.css')
+    link(rel='stylesheet', href='/css/bootstrap-rtl.min.css')
+    link(rel='stylesheet', href="/css/bootstrap-toggle.min.css")
+    
+    block contentStyle
+      link(rel='stylesheet', href='/css/navbarStyle.css')
+      link(rel='stylesheet', href='/css/cPanelStyle.css')
+    block authenticationStyle
+      link(rel='stylesheet', href='/css/authenticationStyle.css')
+    block errorStyle
+      link(rel='stylesheet', href='/css/errorStyle.css')
+    link(rel='stylesheet', href='/css/bootstrap-select.min.css')
+    link(rel='stylesheet', href='/css/bootstrap-datetimepicker.min.css')
+    link(rel='stylesheet', href='/css/jquery-ui.min.css')
+    link(rel='stylesheet', href='/css/fullcalendar.min.css')
+    link(rel='stylesheet', href='/css/fullcalendar.print.css', media='print')
+    link(rel='stylesheet', href='/css/customStyle.css')
+
+  body.animated.fadeIn
+    block navBar
+      .container-fulid.font
+        nav.navbar.navbar-default(role="navigation")
+          // Brand and toggle get grouped for better mobile display
+          .navbar-header
+            button.navbar-toggle(type="button", data-toggle="collapse", data-target="#navbar-collapse-xs")
+              span.sr-only Toggle navigation
+              span.icon-bar
+              span.icon-bar
+              span.icon-bar
+            .navbar-brand
+              span.text-muted الدراسة والامتحانات
+          // Collect the nav links, forms, and other content for toggling
+          .collapse.navbar-collapse#navbar-collapse-xs
+            ul.nav.navbar-nav
+              li(class=activeCPanel)
+                a(href="/cPanel")
+                  span.glyphicon.glyphicon-home.text-primary
+                  span.text-primary  لوحة التحكم
+              li.dropdown(class=activeUser)
+                a.dropdown-toggle(href="#", data-toggle="dropdown")
+                  span.glyphicon.glyphicon-list-alt.text-info
+                  span.text-info  المستخدمين
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    a(href="/users") عرض المستخدمين
+                  li.divider
+                  li
+                    a(href="/users/newUser") إضافة مستخدم جديد
+              //- li.dropdown
+              //-   a.dropdown-toggle(href="#", data-toggle="dropdown")
+              //-     span.glyphicon.glyphicon-search.text-warning
+              //-     span.text-warning  بحث
+              //-     b.caret
+              //-   ul.dropdown-menu(style="min-width: 275px;")
+              //-     li
+              //-       .row
+              //-         .col-md-12
+              //-           form.navbar-form.navbar-left(role="search")
+              //-             .input-group
+              //-               input.form-control(type="text", placeholder="بحث")
+              //-               span.input-group-btn
+              //-                 button.btn.btn-primary(type="submit")
+              //-                   | بحث!
+            .col-md-4
+              .navbar-brand
+                span.text-muted المعهد‪ ‬العالي‪ ‬للمهن‪ ‬الطبية‪ ‬القره‪ ‬بوللي‬
+            ul.nav.navbar-nav.navbar-right
+              li.dropdown
+                a.dropdown-toggle(href="#", data-toggle="dropdown")
+                  span.glyphicon.glyphicon-user.text-info
+                  span.text-info  #{name}
+                  b.caret
+                ul.dropdown-menu
+                  //- li
+                  //-   a(href="#",data-title="Edit", data-toggle="modal", data-target="#UserLoggedIn")
+                  //-     span.glyphicon.glyphicon-cog.text-primary
+                  //-     span.text-info  تعديل الملف الشخصي
+                  //- li.divider
+                  li
+                    a(href="/logout")
+                      span.glyphicon.glyphicon-off.text-primary
+                      span.text-info  خروج
+          // /.navbar-collapse
+      //- #UserLoggedIn.modal.fade.font(tabindex="-1", role="dialog", aria-labelledby="edit", aria-hidden="true")
+        .modal-dialog
+          .modal-content
+            form.form#editeUserLoggedIn(role="form",name='editeUserLoggedIn')
+              .modal-header
+                button.close(type="button", data-dismiss="modal", aria-hidden="true")
+                  span.glyphicon.glyphicon-remove(aria-hidden="true")
+                h4#Heading.modal-title.custom_align تعديل الملف الشخصي
+              .modal-body
+                .form-group
+                  .row
+                    .col-xs-6.col-md-6
+                      label.h4 اسم المستخدم
+                      input.form-control#userName(type="text", name="userName", placeholder="اﻷسم")
+                    .col-xs-6.col-md-6
+                      label.h4 رقم الهاتف
+                      input.form-control#phoneLoggedIn(type="text", name="phoneLoggedIn", placeholder="رقم الهاتف")          
+                  br
+                  .row
+                    .col-xs-6.col-md-6.col-md-offset-3
+                      label.h4 كلمة المرور الحالية
+                      input.form-control#password(type="password", name="password", placeholder="كلمة المرور الحالية")
+                  br
+                  .row
+                    .col-xs-6.col-md-6
+                      label.h4 كلمة المرور الجديدة
+                      input.form-control#newPassword(type="password", name="newPassword", placeholder="الرقم السري")
+                    .col-xs-6.col-md-6
+                      label.h4 تأكيد كلمة المرور الجديدة
+                      input.form-control#newConfirmPassword(type="password", name="newConfirmPassword", placeholder="تأكيد الرقم السري")
+              .modal-footer
+                button.btn.btn-warning.btn-lg(type="submit", style="width: 100%;")
+                  span.glyphicon.glyphicon-ok-sign
+                  span  تعديل
+    block navcPanel
+      .container.font
+        .row
+          .col-xs-12.col-md-2
+            #accordion.panel-group
+              .panel.panel-default
+                .panel-heading.font
+                  h4.panel-title
+                    a(data-toggle="collapse", data-parent="#accordion", href="#collapseOne")
+                      span.fa.fa-calendar-check-o
+                      span(style="font-size:15px;")  اﻷنظمة الدراسية
+                #collapseOne.panel-collapse.collapse(class=collapseOne)
+                  .panel-body#panel-body
+                    table.table
+                      tr
+                        td(class=activeOneOne)
+                          a(href="/semester").font  عرض اﻷنظمة الدراسية
+                          
+                      tr
+                        td(class=activeOneTwo)
+                          a(href="/semester/newSemester").font  إضافة نظام دراسي
+              .panel.panel-default
+                .panel-heading.font
+                  h4.panel-title
+                    a(data-toggle="collapse", data-parent="#accordion", href="#collapseTwo")
+                      span.fa.fa-map-marker.fa-lg
+                      span  القاعات الدراسية
+                #collapseTwo.panel-collapse.collapse(class=collapseTwo)
+                  .panel-body#panel-body
+                    table.table
+                      tr
+                        td(class=activeTwoOne)
+                          a(href="/location").font  عرض القاعات الدراسية    
+                      tr
+                        td(class=activeTwoTwo)
+                          a(href="/location/newLocation").font  إضافة قاعة دراسية
+              .panel.panel-default
+                .panel-heading.font
+                  h4.panel-title
+                    a(data-toggle="collapse", data-parent="#accordion", href="#collapseThree")
+                      span.fa.fa-book
+                      span  المواد الدراسية
+                #collapseThree.panel-collapse.collapse(class=collapseThree)
+                  .panel-body#panel-body
+                    table.table
+                      tr
+                        td(class=activeThreeOne)
+                          a(href="/subject").font  عرض المواد الدراسية
+              .panel.panel-default
+                .panel-heading.font
+                  h4.panel-title
+                    a(data-toggle="collapse", data-parent="#accordion", href="#collapseFour")
+                      span.fa.fa-cubes
+                      span(style="font-size:14.7px;")  اﻷقسام والشعب
+                #collapseFour.panel-collapse.collapse(class=collapseFour)
+                  .panel-body#panel-body
+                    table.table
+                      tr
+                        td(class=activeFourOne)
+                          a(href="/department")  عرض اﻷقسام
+                      tr
+                        td(class=activeFourTwo)
+                          a(href="/department/newDepartment")  إضافة قسم جديد
+                      tr
+                        td(class=activeFourThree)
+                          a(href="/division")  عرض الشعب والتنسيب
+                      tr
+                        td(class=activeFourFour)
+                          a(href="/division/newDivision")  إضافة شعبه جديدة
+              .panel.panel-default.font
+                .panel-heading
+                  h4.panel-title
+                    a(data-toggle="collapse", data-parent="#accordion", href="#collapseFive")
+                      span.fa.fa-graduation-cap
+                      span(style="font-size:14.9px;")  الطلبة المسجلين
+                #collapseFive.panel-collapse.collapse(class=collapseFive)
+                  .panel-body#panel-body
+                    table.table
+                      tr
+                        td(class=activeFiveOne)
+                          a(href="/student")  عرض الطلبة المسجلين   
+                      tr
+                        td(class=activeFiveTwo)
+                          a(href="/student/newStudent")  تسجيل طالب/ة
+              .panel.panel-default.font
+                .panel-heading
+                  h4.panel-title
+                    a(data-toggle="collapse", data-parent="#accordion", href="#collapseSix")
+                      span.fa.fa-users
+                      span  المحاضرين
+                #collapseSix.panel-collapse.collapse(class=collapseSix)
+                  .panel-body#panel-body
+                    table.table
+                      tr
+                        td(class=activeSixOne)
+                          a(href="/facultyMember")  عرض المحاضرين  
+                      tr
+                        td(class=activeSixTwo)
+                          a(href="/facultyMember/newFacultyMember")  إضافة محاضر/ة
+              .panel.panel-default.font
+                .panel-heading
+                  h4.panel-title
+                    a(data-toggle="collapse", data-parent="#accordion", href="#collapseSeven")
+                      span.fa.fa-arrow-down
+                      |  تنزيل المواد
+                #collapseSeven.panel-collapse.collapse(class=collapseSeven)
+                  .panel-body#panel-body
+                    table.table
+                      tr
+                        td(class=activeSevenOne)
+                          a(href="/transcript/Academictranscripts")  تنزيل مواد للطلبة
+              .panel.panel-default.font
+                .panel-heading
+                  h4.panel-title
+                    a(data-toggle="collapse", data-parent="#accordion", href="#collapseEight")
+                      span.glyphicon.glyphicon-file
+                      |  تقارير
+                #collapseEight.panel-collapse.collapse(class=collapseEight)
+                  .panel-body#panel-body
+                    table.table
+                      tr
+                        td(class=activeEightOne)
+                          a(href="/transcript")  اﻹفادات والشهائد
+                      tr
+                        td(class=activeEightTwo)
+                          a(href="/transcript/detections")  نتائج الطلبة
+                      tr
+                        td(class=activeEightThree)
+                          a(href="/report")  كشف الحضور والغياب
+          block content
+    block footer
+      footer.footer.font
+        .container
+          .text-muted
+            a(href='http://naga.ly', target='_blank')
+              p.text-muted جميع الحقوق محفوظة لشركة ناقة للحلول التقنية 2015 ©

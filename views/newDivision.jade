@@ -1,0 +1,53 @@
+extends layout
+block authenticationStyle
+block errorStyle
+block content
+  .container
+    .row
+      .col-md-6
+        .pull-right
+          .btn-group.btn-breadcrumb
+              a.btn.btn-default(href="/cPanel")
+                i.glyphicon.glyphicon-home
+              a.btn.btn-default(href="/division") عرض الشعب والتنسيب
+              .btn.btn-default.active إضافة شعبه جديدة
+      br
+      br
+      br
+      .col-md-6.col-md-offset-2
+        form.form#newDivision(action="/division/newDivision", method="post", accept-charset="utf-8", role="form", onsubmit="myFunction()")
+          legend  إضافة شعبه جديدة
+            .pull-left
+              a.btn.btn-primary(href='/division', role='button')
+                span.glyphicon.glyphicon-th-list
+                span  عرض الشعب والتنسيب
+          .form-group
+            .row
+              .col-xs-6.col-md-6
+                label.h4 اسم الشعبة
+                input.form-control#name(type="text", name="name", placeholder="اسم الشعبة")
+              .col-xs-6.col-md-6.text-left
+                label.h4.pull-left Division name
+                input.form-control#name_en(type="text", name="name_en", placeholder="Division name", dir='ltr')
+          .form-group
+            .row
+              .col-xs-6.col-xs-offset-3.col-md-6.col-md-offset-3 
+                label.h4 تندرج تحت قسم
+                select.form-control.selectpicker#department_iddepartment(name="DepartmentId", data-live-search="true", data-size=5)
+                  option(value="", style='color:grey; display:none;') اختر اسم القسم...
+                  for department in departments
+                    option(value="#{department.dataValues.id}")|#{department.dataValues.name}
+          br
+          hr
+          .col-xs-2.col-xs-offset-5.col-md-2.col-md-offset-5
+            button.btn.btn-primary(type="submit")
+              | إضافة
+  br
+  script(src='/js/jquery-2.1.1.min.js')
+  script(src='/js/bootstrap.min.js')
+  script(src='/js/bootstrap-select.min.js')
+  script(src='/js/jquery.validate.min.js')
+  script(src='/js/bootstrap-notify.min.js')
+  script(src='/js/backToTop.js')
+  script(src='/js/helpers.js')
+  script(src='/js/newDivision.js')

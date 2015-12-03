@@ -1,0 +1,188 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost:3000/css/bootstrap-rtl.min.css">
+    <style>
+      @font-face {
+        font-family: 'Amiri';
+        src: url("http://localhost:3000/fonts/amiri-regular.ttf") format("truetype");
+      }
+      body {
+        font-family: 'Amiri';
+      }
+      .englishStyle{
+        font-family: Times, "Times New Roman", Georgia, serif;
+      }
+      .fontSizeBody{
+        font-size: 17px;
+      }
+      .fontSizeBodyEn{
+        font-size: 15px;
+      }
+    </style>
+    <meta charset="utf-8"/>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <div style="height: 65px;"></div>
+          <div class="row">
+            <div class="col-xs-6 text-right">
+              <!-- <h1>Logo R</h1> -->
+            </div>
+            <div class="col-xs-6 text-left">
+              <!-- <h1>Logo L</h1> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="pull-right fontSizeBody">
+              <div> وزارة التعليم العالى والبحث العلـمـى </div>
+              
+              <div> الهيئة الوطنية للتعليم التقنى والفني </div>
+              
+              <div> ادارة المعاهد التقنية العليا </div>
+              <div style="height: 20px;"></div>
+              <div><b> المعهد العالي للـمهن الطبية القره بوللي </b></div>
+              <div style="height: 10px;"></div>
+              <span>إشاري<span> : ...................... </span></span>
+            </div>
+            <div class="text-left fontSizeBodyEn">
+              <div class="englishStyle"><b>Ministry of Higher Education & Scientific Research </b></div> 
+              <div class="englishStyle"><b> National Board for Technical & Vocational Education </b></div>
+              <div class="englishStyle"><b>Higher Technical Institutions Administration</b> </div>
+              <div style="height: 20px;"></div>
+              <span class="englishStyle"><b> Name of Institute </b></span>
+              <div style="height: 10px;"></div>
+              <span class="fontSizeBody">التاريـخ<span> : ...../....../.....20  </span></span>
+            </div>
+          </div>
+          <div style="height: 10px;"></div>
+          <div class="row text-center" >
+            <h3>إفادة تخرج <span>/</span><b class="englishStyle"> Graduation Certificate </b></h3>
+          </div>
+          <div style="height: 15px;"></div>
+          <div class="row" >
+            <div class="col-xs-5 pull-right fontSizeBodyEn">
+              <span class="fontSizeBody"> يفيد المعهد العالي للـمهن الطبية القره بوللي<span>:</span> </span>
+              <div style="height: 30px;"></div>
+              <span> اسم الطالب <span>:</span>
+                <b style="font-size: 12px">{{st.first_name}} {{st.father_name}} {{st.grand_name}} {{st.last_name}}</b> </span>
+              <div style="height: 3px;"></div>
+              <div> رقم القيد <span>: </span>{{st.set_number}}
+                 </div>
+              <div style="height: 3px;"></div>
+              <div> الجنسية <span>:</span> {{nat.name}}
+                 </div>
+              <div style="height: 3px;"></div>
+              <div> الرقم الوطني <span>:</span> {{st.nid}}
+                  </div>
+              <div style="height: 3px;"></div>
+              <div> تاريـخ و مكان الميلاد <span>:</span> {{st.place_birth}} {{date}}
+                 </div>
+              <div style="height: 3px;"></div>
+              <div> قد تحصل على <span>:</span>
+                </div>
+              <div style="height: 3px;"></div>
+              <div> القسم <span>:</span> {{st.named}}
+                </div>
+              <div style="height: 3px;"></div>
+              <div> الشعبة <span>:</span>  {{st.name}}
+                 </div>
+              <div style="height: 3px;"></div>
+              <div> الفصل الدراسي <span>:</span> {{sem}}
+                 </div>
+              <div style="height: 3px;"></div>
+              <div> العام الدراسي <span>:</span> {{year}}
+                 </div>
+              <div style="height: 3px;"></div>
+              <div> المعدل العام <span>:</span> {{rat}}%
+                 </div>
+              <div style="height: 3px;"></div>
+              <div> التقدير <span>:</span> {{status}}
+                 </div>
+            </div>
+            <div class="col-xs-7  pull-left text-left englishStyle fontSizeBodyEn">
+              <div class="fontSizeBody"> <span>:</span>This is to certify that </div>
+              <div style="height: 30px;"></div>
+              <div>  
+                Student name <span>:</span> <span style="font-size: 11px">{{st.first_name_en}} {{st.father_name_en}} {{st.grand_name_en}} {{st.last_name_en}}</span>
+              </div>
+                 
+              <div style="height: 3px;"></div>
+              <div> {{st.set_number}} <span>:</span> 
+                Reg<span>.</span> No </div>
+              <div style="height: 3px;"></div>
+              <div> {{nat.name}} <span>:</span> 
+                Nationality </div>
+              <div style="height: 3px;"></div>
+              <div> {{st.nid}} <span>:</span> 
+                Nadival No </div>
+              <div style="height: 3px;"></div>
+              <div> {{st.place_birth}} {{date}}  <span>:</span> 
+                Date & Place of birth </div>
+              <div style="height: 3px;"></div>
+              <div>  <span>:</span> 
+                Has been Awarded  </div>
+              <div style="height: 3px;"></div>
+              <div> Department <span>: </span> 
+                 {{st.namede}} </div>
+              <div style="height: 3px;"></div>
+              <div> Division <span>:</span> 
+                 {{st.name_en}} </div>
+              <div style="height: 3px;"></div>
+              <div> Semester <span>:</span> 
+                  {{sem_en}}</div>
+              <div style="height: 3px;"></div>
+              <div> Academic Year  <span>:</span> 
+                 {{year}}</div>
+              <div style="height: 3px;"></div>
+              <div> Percentage <span>:</span> 
+                  {{rat}}%</div>
+              <div style="height: 3px;"></div>
+              <div> General Grad  <span>:</span> 
+                 {{status_en}}</div>
+            </div>
+          
+          <div style="height: 25px;"></div>
+          
+            <div class="pull-right">
+              
+            </div>
+            <div class="pull-left" >
+              
+            </div>
+          </div>
+          <div style="height: 55px;"></div>
+          <div class="row" >
+            <div class="col-xs-6 text-center" >
+              <span  class="fontSizeBodyEn"> مدير مكتب التسجيل و الدراسة و الامتحانات </span>
+              <div style="height: 10px;"></div>
+              <span class="englishStyle fontSizeBodyEn"><b> Institute Register </b></span>
+            </div>
+            <div class="col-xs-6 text-center" >
+              <span class="fontSizeBodyEn"> مدير عام المعهد </span>
+              <div style="height: 10px;" ></div>
+              <span class="englishStyle fontSizeBodyEn"><b> Dean of Institute</b> </span>
+            </div>
+          </div>
+          <div style="height: 140px;"></div>
+          <div class="row text-right" >
+            <h4 style="font-size: 10px;"><span> ملاحظة <span>:</span> أي كشط أو تغيير في هذه اﻹفادة يلغيها <span>.</span> </span></h4>
+          </div>
+          <div style="height: 11px;"></div>
+          <div class="row">
+          <!--   <small>
+              <span> الموقع الالكتروني <span>:</span> naga.ly 
+              <span> صندوق البريد <span>:</span> 00000 
+              <span> فاكس <span>:</span> 00000000 
+              <span> هاتف <span>:</span> 0922222222 
+              <span> العنوان <span>:</span> 000000000000 
+              <span>.</span> </span>
+            </small> -->
+          </div>
+        </div>
+      </div>  
+    </div>
+  </body>
+</html>
